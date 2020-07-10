@@ -26,7 +26,7 @@ app.set("views",path.join(__dirname,"views"))
 
 
 app.get("/",(req,res)=>{
-	let articles=Article.find()
+	let articles=Article.findById("5f07afd68493835ef0017ca6")
 	res.render("sag",{
 		articles:articles
 	})
