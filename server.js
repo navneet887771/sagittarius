@@ -26,10 +26,14 @@ app.set("views",path.join(__dirname,"views"))
 
 
 app.get("/",(req,res)=>{
-	let articles=Article.findById("5f07afd68493835ef0017ca6")
+	try{
+	let par=await Article.find()
 	res.render("sag",{
-		articles:articles
+		cs:par
 	})
+         }catch{
+         	res.send("error hua")
+         }
 })
 
 
