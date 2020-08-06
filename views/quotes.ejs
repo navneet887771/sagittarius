@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sagittarius</title>
+  <link rel="stylesheet" type="text/css" href="/css/default.css">
+  <link rel="stylesheet" type="text/css" href="/css/quotes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+<body class="body">
+
+     <%- include("partials/header") %>
+
+
+     <nav class="nav">
+         As of today we have <%= list.length%> posts for you enjoy it and don't forget to like and subscribe the page!
+     </nav>
+
+     <div class="add">
+          <a href="/quotes/add">New Quotes</a>
+     </div>
+
+     <div>
+    		 <% cs.forEach(data=>{  %>
+        		 	<article class="article">
+        		     <h1 class="h1">
+                   <i class="fa fa-long-arrow-right" aria-hidden="true"></i>&nbsp&nbsp<%= data.id%>.&nbsp<%= data.title%>
+                 </h1> 
+        		     <p class="p">
+                     <%= data.content%>
+                 </p> 
+                 <br>
+                 <a href="quotes/<%= data.id %>" class="button">
+                     Read More
+                 </a> 
+        		    </article>
+    		  <% })  %>
+	    </div>
+
+     <div class="pagination">
+       <a href="#">&laquo;</a>
+       <% if (list.length%3!=0){ %>
+            <% for (var i =1; i <= (list.length/3)+1;  i++ ) { %>
+                <a href="/quotes?page=<%= i %>&limit=3"> <%=i%> </a>
+            <% } %>
+        <% } else { %>
+          <% for (var i =1; i <= Math.floor(list.length/3);  i++ ) { %>
+                <a href="/quotes?page=<%= i %>&limit=3"> <%=i%> </a>
+          <% } %>
+       <% } %>
+
+       <a href="#">&raquo;</a>
+     </div>
+
+     <%- include("partials/footer") %>
+
+	<script src="/javascript/quotes.js"></script>
+     
+</body>
+</html>
